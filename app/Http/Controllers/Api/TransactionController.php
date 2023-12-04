@@ -25,7 +25,11 @@ class TransactionController extends Controller
 
     public function index()
     {
-        return TransactionResource::collection(Transaction::with(relations: 'transaction')->get());
+        try {
+            return TransactionResource::collection(Transaction::with('category')->get());
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Unable to fetch transactions.'], 500);
+        }
     }
     /**
      * Store a newly created resource in storage.

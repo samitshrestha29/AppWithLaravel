@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained();
+            $table->integer('category_id'); // Regular integer, not a foreign key
             $table->string('category_name')->nullable();
             $table->date('transaction_date');
             $table->decimal('amount');
